@@ -42,13 +42,14 @@ def main():
 
     def resizeImgHeightBased(img, finalHeight):
         finalWidth = int(round( (img.size[0]*finalHeight)/img.size[1]  ))
-        resizedImage = img.resize((finalWidth, finalHeight), Image.ANTIALIAS)
+##        Different algorithms are: NEAREST, BILINEAR, BICUBIC, LANNCZOS
+        resizedImage = img.resize((finalWidth, finalHeight), Image.NEAREST)
         print("final width",resizedImage.size[0],"final height",resizedImage.size[1])
         return resizedImage
     
     # This is how to display the image, needs to be done once in the main function
     # this way label object and all its friends are defined
-    myImg = resizeImgHeightBased(Image.open("bardejov.jpg"), root.winfo_screenheight())
+    myImg = resizeImgHeightBased(Image.open("lambrock.gif"), root.winfo_screenheight())
     myImage = ImageTk.PhotoImage(myImg)
     label = Label(root)
     label.configure(image=myImage)
