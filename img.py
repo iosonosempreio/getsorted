@@ -1,12 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-
 import Tkinter as tk
 from Tkinter import Frame, BOTH
 from PIL import ImageTk, Image
 import time, os, subprocess
-from screeninfo import get_monitors
 
 root = tk.Tk()
 img = ImageTk.PhotoImage(Image.open("test.jpg"))
@@ -19,7 +17,7 @@ class Example(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent, background="white")    
         self.parent = parent
-        self.parent.title("Centered window")
+        self.parent.title("getsorted")
         self.pack(fill=BOTH, expand=1)
         self.centerWindow()
 
@@ -40,14 +38,16 @@ def callback(e):
     gpout = gpout.split()
     gpout = gpout[12]
     newPath = gpout
+    print "image captured: "+newPath
     # take captured img and resize it
     img0 = Image.open(newPath)
     #print (img0.size[0], img0.size[1])
-    widthImg = w
+    widthImg = 800
     heightImg = (widthImg * img0.size[1])/img0.size[0]
     img1 = img0.resize((widthImg, heightImg), Image.ANTIALIAS)
     newPathResized = newPath.replace(".jpg", "-resized.jpg")
     img1.save(newPathResized)
+    print "image resized: "+newPathResized
     
     # display resized img
     # img2 = ImageTk.PhotoImage(Image.open(newPathResized))
@@ -63,6 +63,7 @@ def callback(e):
     output = output.replace("'","")
     newPathSorted = output
     time.sleep(0)
+    print "image pixels sorted: "+newPathSorted
     # display sorted img
     img3 = ImageTk.PhotoImage(Image.open(newPathSorted))
     panel.configure(image = img3)
