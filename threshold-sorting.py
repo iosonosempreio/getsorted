@@ -42,7 +42,7 @@ def callback(e):
     # take captured img and resize it
     img0 = Image.open(newPath)
     #print (img0.size[0], img0.size[1])
-    widthImg = 800
+    widthImg = 400
     heightImg = (widthImg * img0.size[1])/img0.size[0]
     img1 = img0.resize((widthImg, heightImg), Image.ANTIALIAS)
     newPathResized = newPath.replace(".jpg", "-resized.jpg")
@@ -56,7 +56,8 @@ def callback(e):
     # time.sleep(0)
 
     # sorting process
-    pixelsortSubprocess = "python pixelsort/pixelsort.py " + newPathResized + " -a -45 -i waves -c 30 -o "+newPath.replace(".jpg","")+"-sorted.jpg"
+    # pixelsortSubprocess = "python pixelsort/pixelsort.py " + newPathResized + " -a -45 -i waves -c 30 -o "+newPath.replace(".jpg","")+"-sorted.jpg"
+    pixelsortSubprocess = "python pixelsort/pixelsort.py " + newPathResized + " -o "+newPath.replace(".jpg","")+"-sorted.jpg -a -45 -t 0.3 -u 0.7"
     output = subprocess.check_output(pixelsortSubprocess, stderr=subprocess.STDOUT, shell=True)
     output = output.split()
     output = output[-1].replace(')','')
