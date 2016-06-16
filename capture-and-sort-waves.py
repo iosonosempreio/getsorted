@@ -49,10 +49,10 @@ def main():
     
     # This is how to display the image, needs to be done once in the main function
     # this way label object and all its friends are defined
-    myImg = resizeImgHeightBased(Image.open("lambrock.gif"), root.winfo_screenheight())
+    myImg = resizeImgHeightBased(Image.open("lambrock.jpg"), root.winfo_screenheight())
     myImage = ImageTk.PhotoImage(myImg)
     label = Label(root)
-    label.configure(image=myImage)
+    label.configure(image=myImage, bd=0)
     label.image = myImage
     xLabel = (root.winfo_screenwidth() - myImg.size[0])/2
     yLabel = (root.winfo_screenheight() - myImg.size[1])/2
@@ -97,7 +97,7 @@ def main():
         
         
 ##        sorting process
-        pixelsortSubprocess = "python pixelsort/pixelsort.py " + newPathVerySmall + " -a -45 -i waves -c 20 -o "+newPath.replace(".jpg","")+"-sorted.jpg"
+        pixelsortSubprocess = "python pixelsort/pixelsort.py " + newPathVerySmall + " -a -90 -i waves -c 20 -o "+newPath.replace(".jpg","")+"-sorted.jpg"
 ##        pixelsortSubprocess = "python pixelsort/pixelsort.py " + newPathVerySmall + " -o "+newPath.replace(".jpg","")+"-sorted.jpg -a -90 -i threshold -t 0.3 -u 0.7"
         print "starting to sort"
         output = subprocess.check_output(pixelsortSubprocess, stderr=subprocess.STDOUT, shell=True)
