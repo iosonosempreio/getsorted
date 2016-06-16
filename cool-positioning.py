@@ -27,7 +27,7 @@ def main():
             Style().configure("TFrame", background="#000")     
          
     def changeImage(event):
-        #print "clicked at", event.x, event.y, "typed ", event.char
+##        print "clicked at", event.x, event.y, "typed ", event.char
         if event.char == "1":
             print event.char
             myImg = resizeImg(Image.open("bardejov.jpg"), root.winfo_screenwidth())
@@ -61,7 +61,7 @@ def main():
     def resizeImg(img, finalWidth):
         finalHeight = int(round((finalWidth * img.size[1])/img.size[0]))
         resizedImage = img.resize((finalWidth, finalHeight), Image.ANTIALIAS)
-        #print("final width",resizedImage.size[0],"final height",resizedImage.size[1])
+        print("final width",resizedImage.size[0],"final height",resizedImage.size[1])
         return resizedImage
         
     root = Tk()   
